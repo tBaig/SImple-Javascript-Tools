@@ -1,0 +1,39 @@
+<DOCTYPE html!>
+<html>
+<head>
+	<title> Slideshow </title>
+</head>
+	<body>
+		<div id="slideshow"></div>
+		<script type="text/javascript">
+		/*This is a simple example of how to implement a slideshow in JavaScript*/
+
+		/*Array to hold images that populate our slideshow*/
+		var pics = ["http://praywhere.co/images/talha.png",
+						"http://praywhere.co/images/uzair.png",
+						"https://pbs.twimg.com/profile_images/458826932461633536/BWthVU_7.jpeg"];
+
+        /*slideShow function takes an array of images. Create an img tag and inittialy, sets the src attribute
+        to the first image in the argument array. Then every 3 seconds changes the image by changing the 
+        src value of the image. When the index is equal to the length of the images array the index is reset*/      
+		function slideShow(images){
+			if(!(images instanceof Array)){
+				console.log(new TypeError("Argument is not of type array"));
+				return;
+			}
+
+		    var slideshow = document.getElementById("slideshow");
+		    var slide = document.createElement('img');
+		    slide.src = images[0];
+		    var index = 1;
+		    setInterval(function (){
+		        if(index == images.length) {index = 0};
+		        slide.src = images[index];
+		        index++;
+		    },3000);
+		    slideshow.appendChild(slide);
+		}
+		window.onload = slideShow(pics); //waits for DOM to be ready and then calls the slideshow function
+		</script>
+	</body>
+</html>
